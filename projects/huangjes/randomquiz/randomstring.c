@@ -15,7 +15,7 @@ of 5 characters and a null character. Thus, I made my array be 5 characters long
 a null character at the end. To satisfy the conditions, all random characters in the
 string are only the lowercase letters of the alphabet. Therefore, for the string random
 I narrowed it down to only pick from the 26 lower case letters of the alphabet. Then,
-I made the last character a null character. 
+I made the last character a null character to end the string. 
 
 In testme(), we start at state 0. Once the inputChar() function returns '[', then the 
 state changes to 1. The loop continues and if the conditions are met in the if statement,

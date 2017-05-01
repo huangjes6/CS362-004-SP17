@@ -2,12 +2,6 @@ CFLAGS = -Wall -std=c99 -fpic -coverage -fprofile-arcs -lm
 
 default: unittestresults.out
 
-unittest1.o: unittest1.c dominion.o
-	gcc -c unittest1.c -g $(CFLAGS)
-	
-unittest2.o: unittest1.c dominion.o
-	gcc -c unittest1.c -g $(CFLAGS)
-
 unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c rngs.c dominion.c
 	echo "Result for running unit tests:" > unittestresults.out
 	

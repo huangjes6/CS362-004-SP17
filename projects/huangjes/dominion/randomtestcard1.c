@@ -13,7 +13,7 @@
 #include "dominion_helpers.h"
 #include "rngs.h"
 
-#define NUM_TESTS 10000
+#define NUM_TESTS 2000
 
 int checkPlaySmithy(int curPlayer, struct gameState *G, struct gameState *pre)
 {

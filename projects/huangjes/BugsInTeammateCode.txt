@@ -1,0 +1,85 @@
+Bug 1) Smithy causes extra card draw
+
+Name: Jessica Huang
+
+Date: 05/22/2017
+
+Platform: Oregon State Linux flip1.engr.oregonstate.edu server
+
+Severity of problem: Serious
+
+Every time the current player plays the smithy card, the current player's hand increases by 3 cards. This means that the current player is drawing an extra card. The extra card being drawn on that turn can determine the outcome of the game.
+
+Set up the game
+---------------------------------------------------------------------------------
+
+1. Set up dominion game with 2 players.
+2. Initialize game with number of players, k, a seed of 1, and the game state. 
+	int k[10] = { adventurer, embargo, village, minion, mine,
+		cutpurse, sea_hag, tribute, smithy, council_room };
+
+3. A copy of the gamestate was created. 
+4. The current player was set to be equal to the current player in the game state. 
+5. smithyRefactored(&G, 0) was played. 
+6. The handCount of the previous game state was compared to the handCount of the game state after playing smithy.
+
+I expected to see the hand count increase by 2. 
+	previous hand count = 5
+	current hand count  = 7
+
+Instead, I saw the hand count increase by 3. 
+
+	previous hand count = 5
+	current hand count  = 8
+
+Code causing issues:
+for (i = 0; i < 4; i++)
+{
+ 	drawCard(currentPlayer, state);
+}
+
+----------------------------------------------------------------------------------------------------------------------
+
+Bug 2) Adventurer counts non-treasure card as treasure
+
+Name: Jessica Huang
+
+Date: 05/22/2017
+
+Platform: Oregon State Linux flip1.engr.oregonstate.edu server
+
+Severity of problem: Serious
+
+When the adventurer card is played, the player should typically have a net hand count gain of 1 card. The player gains 2 treasure cards and discards the adventurer card from the hand. If there is only 1 treasure, the current player should only draw that 1 treasure and the action should be completed. However, the current player managed to draw 2 treasures even though there was only 1 treasure in the current player's entire deck every time in this situation when adventurer was played.
+
+Set up the game
+---------------------------------------------------------------------------------
+
+1. Set up dominion game with 2 players.
+2. Initialize game with number of players, k, a seed of 1, and the game state. 
+	int k[10] = { adventurer, embargo, village, minion, mine,
+		cutpurse, sea_hag, tribute, smithy, council_room };
+3. Create a copy of the game state.
+4. The current player was set to be equal to the current player in the game state. 
+5. Preset the current player's deck and discard pile with 5 cards each
+6. Preset the current player's deck and discard pile to be all sea_hag cards.
+7. Set one of the current player's deck cards to be a copper.
+8. Play adventurerRefactored(&G).
+9. Compare the handCount before adventurer was played to the handCount after adventurer was played using copied game state as previous game state.
+
+I expected to see the hand count stay the same because the current player should only draw 1 card and have adventurer in the played pile. 
+
+	previous hand count = 5
+	current hand count = 5
+
+Instead, I saw the current hand count was greater than the previous hand count.
+	previous hand count = 5
+	current hand count = 6
+
+This is a problem because the drawn treasure is increasing when the card drawn is not a treasure. This means that the current player will not be able to buy as much this turn. Or the cards drawn that are counted as treasures may be very useful cards that determine the outcome of the game.
+
+Code causing issues:
+if (cardDrawn != copper || cardDrawn == silver || cardDrawn == gold){
+     drawntreasure++;
+	 ...
+}

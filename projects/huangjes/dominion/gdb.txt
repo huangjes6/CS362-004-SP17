@@ -1,0 +1,102 @@
+Breakpoint 1 at 0x401ce7: file randomtestcard1.c, line 132.
+The program is not being run.
+Starting program: /nfs/stak/students/h/huangjes/CS362/CS362-004-SP17/projects/huangjes/dominion/randomtestcard1 
+
+Breakpoint 1, main () at randomtestcard1.c:132
+132			memcpy(&pre, &G, sizeof(struct gameState));
+Missing separate debuginfos, use: debuginfo-install glibc-2.17-157.el7_3.1.x86_64
+133			int r = playSmithy(curPlayer, &G, handPos);
+playSmithy (currentPlayer=2, state=0x7fffffff7900, handPos=107) at dominion.c:1241
+1241		for (i = 0; i < 3; i++)
+1243			drawCard(currentPlayer, state);
+drawCard (player=2, state=0x7fffffff7900) at dominion.c:530
+530	  if (state->deckCount[player] <= 0){//Deck is empty
+570	    int count = state->handCount[player];//Get current hand count for player
+576	    deckCounter = state->deckCount[player];//Create holder for the deck count
+577	    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+578	    state->deckCount[player]--;
+579	    state->handCount[player]++;//Increment hand count
+582	  return 0;
+583	}
+playSmithy (currentPlayer=2, state=0x7fffffff7900, handPos=107) at dominion.c:1241
+1241		for (i = 0; i < 3; i++)
+1243			drawCard(currentPlayer, state);
+drawCard (player=2, state=0x7fffffff7900) at dominion.c:530
+530	  if (state->deckCount[player] <= 0){//Deck is empty
+570	    int count = state->handCount[player];//Get current hand count for player
+576	    deckCounter = state->deckCount[player];//Create holder for the deck count
+577	    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+578	    state->deckCount[player]--;
+579	    state->handCount[player]++;//Increment hand count
+582	  return 0;
+583	}
+playSmithy (currentPlayer=2, state=0x7fffffff7900, handPos=107) at dominion.c:1241
+1241		for (i = 0; i < 3; i++)
+1243			drawCard(currentPlayer, state);
+drawCard (player=2, state=0x7fffffff7900) at dominion.c:530
+530	  if (state->deckCount[player] <= 0){//Deck is empty
+570	    int count = state->handCount[player];//Get current hand count for player
+576	    deckCounter = state->deckCount[player];//Create holder for the deck count
+577	    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+578	    state->deckCount[player]--;
+579	    state->handCount[player]++;//Increment hand count
+582	  return 0;
+583	}
+playSmithy (currentPlayer=2, state=0x7fffffff7900, handPos=107) at dominion.c:1241
+1241		for (i = 0; i < 3; i++)
+1247		discardCard(handPos, currentPlayer, state, 0);
+discardCard (handPos=107, currentPlayer=2, state=0x7fffffff7900, trashFlag=0) at dominion.c:1118
+1118	  if (trashFlag < 1)
+1121	      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+1122	      state->playedCardCount++;
+1126	  state->hand[currentPlayer][handPos] = -1;
+1129	  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+1134	  else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
+1142	      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+1144	      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+1146	      state->handCount[currentPlayer]--;
+1149	  return 0;
+1150	}
+playSmithy (currentPlayer=2, state=0x7fffffff7900, handPos=107) at dominion.c:1249
+1249		for (i = 0; i < state->numPlayers; i++)
+1251			if (i != currentPlayer)
+$1 = 0
+$2 = 0
+1253				if (state->handCount[i] > 4)
+$3 = 37
+$4 = 37
+1256					while (state->handCount[i] > 0)
+1258						discardCard(handPos, i, state, 0);
+$5 = 107
+discardCard (handPos=107, currentPlayer=0, state=0x7fffffff7900, trashFlag=0) at dominion.c:1118
+1118	  if (trashFlag < 1)
+1121	      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+1122	      state->playedCardCount++;
+1126	  state->hand[currentPlayer][handPos] = -1;
+1129	  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+$6 = 107
+1134	  else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
+1142	      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+1144	      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+1146	      state->handCount[currentPlayer]--;
+1149	  return 0;
+1150	}
+playSmithy (currentPlayer=2, state=0x7fffffff7900, handPos=107) at dominion.c:1256
+1256					while (state->handCount[i] > 0)
+1258						discardCard(handPos, i, state, 0);
+discardCard (handPos=107, currentPlayer=0, state=0x7fffffff7900, trashFlag=0) at dominion.c:1118
+1118	  if (trashFlag < 1)
+1121	      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+1122	      state->playedCardCount++;
+1126	  state->hand[currentPlayer][handPos] = -1;
+1129	  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+1134	  else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
+1142	      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+1144	      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+1146	      state->handCount[currentPlayer]--;
+1149	  return 0;
+A debugging session is active.
+
+	Inferior 1 [process 3349] will be killed.
+
+Quit anyway? (y or n) 

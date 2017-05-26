@@ -1236,7 +1236,7 @@ int playAdventurer(int drawntreasure, int currentPlayer, struct gameState *state
 }
 
 int playSmithy(int currentPlayer, struct gameState *state, int handPos) {
-	int i, j;
+	int i;
 	//+3 Cards
 	for (i = 0; i < 3; i++)
 	{
@@ -1245,27 +1245,6 @@ int playSmithy(int currentPlayer, struct gameState *state, int handPos) {
 
 	//discard card from hand
 	discardCard(handPos, currentPlayer, state, 0);
-	//other players discard hand and redraw if hand size > 4
-	for (i = 0; i < state->numPlayers; i++)
-	{
-		if (i != currentPlayer)
-		{
-			if (state->handCount[i] > 4)
-			{
-				//discard hand
-				while (state->handCount[i] > 0)
-				{
-					discardCard(handPos, i, state, 0);
-				}
-
-				//draw 4
-				for (j = 0; j < 4; j++)
-				{
-					drawCard(i, state);
-				}
-			}
-		}
-	}
 
 	return 0;
 }
